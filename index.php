@@ -10,8 +10,16 @@ class Person {
         $this->lastname = $pLastname;
     }
 
+    public function getFirstname(): string {
+        return $this->firstname;
+    }
+
+    public function getLastname(): string {
+        return $this->lastname;
+    }
+
     public function speak(): string {
-        return "Je suis " . $this->firstname . " " . $this->lastname . " et mon chien est " . $this->dog->getName();
+        return "Je suis $this->firstname $this->lastname et mon chien est " . $this->dog->getName();
     }
 
     public function buy(Dog $pDog) {
@@ -38,7 +46,7 @@ class Dog {
     }
 
     public function speak(): string {
-        return "Mon maitre est JD et je suis J";
+        return "Mon maitre est " . $this->owner->getFirstname() . " " . $this->owner->getLastname() . " et je suis $this->name";
     }
 }
 
@@ -48,6 +56,7 @@ $dog = new Dog("Johnny");
 $person->buy($dog);
 
 var_dump($person->speak());
+var_dump($dog->speak());
 
 
 
