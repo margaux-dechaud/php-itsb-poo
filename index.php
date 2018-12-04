@@ -1,7 +1,7 @@
 <?php
 
 class Person {
-    private $dog;
+    private $dogs = array(); // Optionnel de faire "= array()"
     private $firstname;
     private $lastname;
 
@@ -23,9 +23,9 @@ class Person {
     }
 
     public function buy(Dog $pDog) {
-        $this->dog = $pDog;
+        $this->dogs[] = $pDog;
 
-        $this->dog->setOwner($this);
+        // $this->dog->setOwner($this);
     }
 }
 
@@ -51,17 +51,26 @@ class Dog {
 }
 
 $person = new Person("John", "Doe");
+
 $dog = new Dog("Johnny");
 
 $person->buy($dog);
 
+$dogBoby = new Dog("Boby");
+
+$person->buy($dogBoby);
+
+//var_dump($person);
+
 var_dump($person->speak());
-var_dump($dog->speak());
+//var_dump($dog->speak());
 
-
-
-
-
+//$dogs = array();
+//
+//$dogs[] = $dog;
+//$dogs[] = $dogBoby;
+//
+//var_dump($dogs);
 
 
 
