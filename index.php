@@ -19,7 +19,7 @@ class Person {
     }
 
     public function speak(): string {
-        return "Je suis $this->firstname $this->lastname et mon chien est " . $this->dog->getName();
+        return "Je suis $this->firstname $this->lastname et mon chien est " . $this->dogs->getName();
     }
 
     public function buy(Dog $pDog) {
