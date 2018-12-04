@@ -29,17 +29,24 @@ class Person {
     public function getLastname() {
         return $this->lastname;
     }
+
+    public function speak() {
+        return "Hello my name is " . $this->firstname . " " . $this->lastname;
+    }
 }
 
 $person1 = new Person();
 //$person1->firstname = "John";
 //$person1->lastname = "Doe";
 
+
 $person1->setFirstname("John");
 $person1->setLastname("Doe");
+var_dump($person1->speak());
 
-var_dump($person1->getFirstname());
-var_dump($person1->getLastname());
+//var_dump($person1);
+//var_dump($person1->getFirstname());
+//var_dump($person1->getLastname());
 
 //$person2 = new Person();
 //$person2->firstname = "Jane";
