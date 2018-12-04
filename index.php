@@ -1,6 +1,7 @@
 <?php
 
 class Person {
+    private $dog;
     private $firstname;
     private $lastname;
 
@@ -10,6 +11,10 @@ class Person {
     }
 
     public function speak() { }
+
+    public function buy($pDog) {
+        $this->dog = $pDog;
+    }
 }
 
 class Dog {
@@ -21,12 +26,11 @@ class Dog {
 }
 
 $person = new Person("John", "Doe");
-
-var_dump($person);
-
 $dog = new Dog("Johnny");
 
-var_dump($dog);
+$person->buy($dog);
+
+var_dump($person);
 
 
 
