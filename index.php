@@ -16,10 +16,13 @@ class Person {
 
     public function buy(Dog $pDog) {
         $this->dog = $pDog;
+
+        $this->dog->setOwner($this);
     }
 }
 
 class Dog {
+    private $owner;
     private $name;
 
     public function __construct(string $pName) {
@@ -29,6 +32,14 @@ class Dog {
     public function getName(): string {
         return $this->name;
     }
+
+    public function setOwner(Person $pOwner) {
+        $this->owner = $pOwner;
+    }
+
+    public function speak(): string {
+        return "Mon maitre est JD et je suis J";
+    }
 }
 
 $person = new Person("John", "Doe");
@@ -37,7 +48,6 @@ $dog = new Dog("Johnny");
 $person->buy($dog);
 
 var_dump($person->speak());
-
 
 
 
