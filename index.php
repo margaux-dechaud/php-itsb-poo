@@ -1,18 +1,30 @@
 <?php
 
-abstract class Vehicule {
+interface IAction {
+    public function avancer();
+}
+
+abstract class Vehicule implements IAction {
+//    public function avancer() {
+//        var_dump("J'avance...");
+//    }
+}
+
+class Car extends Vehicule {
     public function avancer() {
-        var_dump("J'avance...");
+        var_dump("Je suis un Car et j'avance");
+    }
+}
+class Bike extends Vehicule {
+    public function avancer() {
+        var_dump("Je suis un Bike et j'avance");
     }
 }
 
-class Car extends Vehicule { }
-class Bike extends Vehicule { }
-
-class User {
+class User implements IAction {
     private $vehicule;
 
-    public function setVehicule(Vehicule $pVehicule) {
+    public function setVehicule(IAction $pVehicule) {
         $this->vehicule = $pVehicule;
     }
 
