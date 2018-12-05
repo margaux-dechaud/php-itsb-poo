@@ -3,6 +3,10 @@
 class Mammal {
     private $years = 0;
 
+    public function __construct(int $pYears) {
+        $this->years = $pYears;
+    }
+
     /**
      * @return int
      */
@@ -23,12 +27,19 @@ class Mammal {
 class Person extends Mammal {
     private $firstname;
     private $lastname;
+
+    public function __construct(string $pFirstname, string $pLastname, int $pYears) {
+        parent::__construct($pYears);
+
+        $this->firstname = $pFirstname;
+        $this->lastname = $pLastname;
+    }
 }
 
 class Dog extends Mammal {
     private $name;
 }
 
-$person = new Person(1);
+$person = new Person("John", "Doe", 1);
 
 var_dump($person);
