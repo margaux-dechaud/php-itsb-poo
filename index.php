@@ -41,5 +41,7 @@ class Dog extends Mammal {
 }
 
 $person = new Person("John", "Doe", 1);
-
 var_dump($person);
+
+$dog = new Dog("Boby", 1);
+var_dump($dog);
