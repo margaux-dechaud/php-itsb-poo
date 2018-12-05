@@ -31,9 +31,9 @@ class Person {
     }
 
     public function buy(Dog $pDog) {
-        $this->dogs[] = $pDog;
+        $pDog->setOwner($this);
 
-        // $this->dog->setOwner($this);
+        $this->dogs[] = $pDog;
     }
 }
 
