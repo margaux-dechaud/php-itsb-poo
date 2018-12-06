@@ -1,72 +1,29 @@
 <?php
+//CREATE TABLE clients (
+//    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+//    firstname VARCHAR(30) NOT NULL,
+//    lastname VARCHAR(30) NOT NULL
+//);
 
-class NoDogWithPersonException extends Exception { }
-
-interface IActions {
-    public function seMarier($p);
-}
-
-class Person implements IActions {
-    private $partner;
-    private $firstname;
-    private $lastname;
-
-    public function __construct($pFirstname, $pLastname) {
-        $this->firstname = $pFirstname;
-        $this->lastname = $pLastname;
-    }
-
-    public function setLastname($p) {
-        $this->lastname = $p;
-    }
-
-    public function seMarier($p) {
-        if(!$p instanceof Person) {
-            throw new NoDogWithPersonException("On ne peut pas marier une Person avec un Dog.");
-        }
-
-        $p->setLastname($this->lastname);
-
-        $this->partner = $p;
-    }
-}
-
-class Dog implements IActions {
-    private $partner;
-    private $name;
-
-    public function __construct($pName) {
-        $this->name = $pName;
-    }
-
-    public function seMarier($p) {
-        if($p instanceof Person) {
-            throw new NoDogWithPersonException("On ne peut pas marier une Person avec un Dog.");
-        }
-
-        $this->partner = $p;
-    }
-}
-
-$boby = new Dog("Boby");
-
-$john = new Person("John", "Doe");
-$jane = new Person("Jane", "Die");
+$host = '172.17.0.3'; // 'localhost';
+$port = 3306;
+$database = 'test';
 
 try {
-    $john->seMarier($boby);
-} catch (NoDogWithPersonException $e) {
+    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$database",
+        'bibi',
+        'password');
+
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $pdo->exec("INSERT INTO clients (firstname, lastname) VALUES ('john', 'doe');");
+
+    var_dump("Le dernier ID est : " . $pdo->lastInsertId());
+
+    var_dump($pdo);
+} catch (PDOException $e) {
     var_dump($e->getMessage());
-} catch (Exception $e) {
-    var_dump($e->getMessage());
+//    var_dump("Bad credentials");
 } finally {
-    var_dump("Mon pote à fait une erreur !!!!");
+    $pdo = null;
 }
-
-try {
-    $john->seMarier($jane);
-} catch (NoDogWithPersonException $e) {
-    var_dump($e->getMessage());
-}
-
-var_dump($john);
