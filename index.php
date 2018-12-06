@@ -40,6 +40,11 @@ class Dog implements IActions {
     }
 
     public function seMarier($p) {
+        if($p instanceof Person) {
+            throw new NoDogWithPersonException("On ne peut pas marier une Person avec un Dog.");
+        }
+
+        $this->partner = $p;
     }
 }
 
